@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Source Separation Audio Project by shawncaeiro</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Source Separation Audio Project</h1>
+        <h2>Application to source separate a piece of music by using the most accurate source separation algorithm for that genre of music.</h2>
+        <a href="https://github.com/shawncaeiro/AudioProject" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h3>
+<a id="source-separation" class="anchor" href="#source-separation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source Separation</h3>
+
+<p>Audio source separation is a well known problem in the field of signal processing. In class, we implemented the REPET algorithm so separate foreground vocal from background music. In this project, we test many other source separation algorithms and test them against different genres of music. Our final deliverable that will be able to take in a musical piece of a certain genre and separate the audio based on the best algorithm for that genre.</p>
+
+<h3>
+<a id="prior-work" class="anchor" href="#prior-work" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prior Work</h3>
+
+<p>There has been much literature in the field of source separation, with many algorithms that have been implemented for source separation. The following papers have influenced our work so far, showcasing different algorithms that have been used to separate sources.</p>
+
+<ul>
+<li>Celik, Abdullah, Milutin Stanacevic, and Gert Cauwenberghs. <a href="http://isn.ucsd.edu/pubs/iscas04_ica.pdf">"Mixed­signal real­time adaptive blind source separation."</a>
+Circuits and Systems, 2004. ISCAS'04. Proceedings of the 2004 International Symposium on. Vol. 5. IEEE, 2004.</li>
+<li>Duan, Zhiyao, Gautham J. Mysore, and Paris Smaragdis. <a href="https://ccrma.stanford.edu/%7Egautham/Site/Publications_files/duan%C2%ADlvaica2012.pdf">"Online PLCA for real­time semi­supervised source separation."</a>
+Latent Variable Analysis and Signal Separation. Springer Berlin Heidelberg, 2012. 34­41.</li>
+<li>Mysore, Gautham J., and Paris Smaragdis. <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=5946317">"A non­negative approach to semi­supervised separation of speech from noise with the use of temporal dynamics."</a> Acoustics, Speech and Signal Processing (ICASSP), 2011 IEEE International Conference on. IEEE, 2011.</li>
+<li>Vincent, Emmanuel, Rémi Gribonval, and Cédric Févotte. <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=1643671">"Performance measurement in blind audio source separation."</a> Audio, Speech, and Language Processing, IEEE Transactions on 14.4 (2006): 1462­1469.</li>
+</ul>
+
+<h3>
+<a id="what-we-have-done-so-far" class="anchor" href="#what-we-have-done-so-far" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What we have done so far</h3>
+
+<p>The first step was researching the prominent algorithms in the industry. We found many different algorithms and went through a feasibility analysis of trying to implement the algorithms in Python. After seeing which algorithms were feasible, we focused on REPET, non negative matrix factorization, robust principal component analysis, truncated SVD, and Factor Analysis, . We implemented each of those algorithms in Python code and tested on various pieces of music. </p>
+
+<h3>
+<a id="next-steps" class="anchor" href="#next-steps" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Next Steps</h3>
+
+<p>Our next steps include a more rigorous test of different types of genres of music on the different source separating algorithms. Based on that analysis, we will have our results for which separators work best for which genres of music and will be able to mock up a simple application that source separates an audio file based on the genre of music. </p>
+
+<h3>
+<a id="team" class="anchor" href="#team" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Team</h3>
+
+<ul>
+<li>Sam Cohen</li>
+<li>Zavier Henry</li>
+<li>Shawn Caeiro</li>
+</ul>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/shawncaeiro/AudioProject/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/shawncaeiro/AudioProject/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/shawncaeiro/AudioProject"></a> is maintained by <a href="https://github.com/shawncaeiro">shawncaeiro</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
