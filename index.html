@@ -29,9 +29,27 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h3>
-<a id="source-separation" class="anchor" href="#source-separation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source Separation</h3>
+<a id="source-separation-introduction" class="anchor" href="#source-separation-introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source Separation Introduction</h3>
 
 <p>Audio source separation is a well known problem in the field of signal processing. In class, we implemented the REPET algorithm so separate foreground vocal from background music. In this project, we test many other source separation algorithms and test them against different genres of music. Our final deliverable that will be able to take in a musical piece of a certain genre and separate the audio based on the best algorithm for that genre.</p>
+
+<h3>
+<a id="web-application" class="anchor" href="#web-application" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Web Application</h3>
+
+<h2>
+<a id="devoiceify-web-application" class="anchor" href="#devoiceify-web-application" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong><a href="https://serene-fjord-33111.herokuapp.com/">DeVoiceIfy Web Application</a></strong>
+</h2>
+
+<h3>
+<a id="motivation" class="anchor" href="#motivation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Motivation</h3>
+
+<p>Many source separation algorithms have been researched and proven to have modest success in separating foreground audio, such as vocals, from background audio, such as rhythmic music. </p>
+
+<p>However, our group was wondering if some algorithms had better performance in certain circumstances? Would there be situations where for one type of audio signal algorithm X would work best, while for another algorithm Y worked best? We wished to find the answer to that question.</p>
+
+<p>Specifically, we looked at typing music by genre. A genre of music has general trends in regards to tempo, beat, and rhythm. Would those trends lead to better performance of some algorithms over others? We are asking: </p>
+
+<p><em><strong>Is the performance of a source separation algorithm dependent on the source’s genre of music?</strong></em></p>
 
 <h3>
 <a id="prior-work" class="anchor" href="#prior-work" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prior Work</h3>
@@ -48,14 +66,43 @@ Latent Variable Analysis and Signal Separation. Springer Berlin Heidelberg, 2012
 </ul>
 
 <h3>
-<a id="what-we-have-done-so-far" class="anchor" href="#what-we-have-done-so-far" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What we have done so far</h3>
+<a id="system-overview" class="anchor" href="#system-overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>System Overview</h3>
 
-<p>The first step was researching the prominent algorithms in the industry. We found many different algorithms and went through a feasibility analysis of trying to implement the algorithms in Python. After researching which algorithms were feasible, we focused on REPET, non negative matrix factorization, robust principal component analysis, truncated SVD, and Factor Analysis as source separation algorithms. We then implemented each of those algorithms in Python code and tested on various pieces of music. Each algorithm worked decently well on some pieces of music while failed on other snippets.</p>
+<p><strong>Analysis Workflow</strong>
+To quantify the analysis, we created an automated system that took in clips of audio files and attempted to separate the audio tracks. The system is populated with a dataset of audio snippets and audio snippets with vocal overlay, each within a genre of music. The system then takes each mixed audio signal and attempts to separate the audio signals based on each algorithm. The separations are then compared to the originals to create an accuracy score.</p>
+
+<p><strong>Application Workflow</strong>
+Through a web application, a person is able to separate audio based on a musical piece’s genre.  A user enters a audio snippet through a browser interface, along with the genre of that music. The user is then allowed to overlay a vocal audio track through the microphone. The system then processes the mixed audio signal using the source separation algorithm best suited for that genre. The separated audio is then available to the user.</p>
+
+<h1>
+<a id="results" class="anchor" href="#results" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results</h1>
+
+<p><img src="http://i.imgur.com/6BgV3ko.png" alt="Source Separation Results"></p>
 
 <h3>
-<a id="next-steps" class="anchor" href="#next-steps" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Next Steps</h3>
+<a id="analysis" class="anchor" href="#analysis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Analysis</h3>
 
-<p>Our next steps include a more rigorous test of different types of genres of music on the different source separating algorithms. Based on that analysis, we will have our results for which separators work best for which genres of music and will be able to mock up a simple application that source separates an audio file based on the genre of music. </p>
+<p>Our analysis showed it was easier to separate classical music than rock. An interesting note was that it was easier to separate out the rock background than classical. This could be due to the repetitive nature of the background signal. </p>
+
+<p>Our data said NMF performed best regardless of the genre. However, when looking at background and foreground individually, we see REPET worked well on background signals and poor on vocal. SVD had reverse performance. This indicates that an algorithm should be selected based on which signal is most important to retain.</p>
+
+<h3>
+<a id="dataset-and-methodology" class="anchor" href="#dataset-and-methodology" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dataset and Methodology</h3>
+
+<p>Our dataset set came from manually creating audio snippets from YouTube clips of musical performances, with no vocals. For testing, we overlayed a vocal track on those audio snippets. </p>
+
+<p>For our testing we chose the genres of classical and rock. We believed each genre had distinct rhythm and flow. We hypothesized that because of this different, some algorithms would prove to work better than others.</p>
+
+<p>We compared REpeating Pattern Extraction Technique (REPET), Nonnegative Matrix Decomposition (NMF), and TruncatedSVD (SVD). We chose these algorithms based on literature in the field and feasibility of implementation. </p>
+
+<p>Our methodology consisted of running each mixed signal against each source separation algorithm. The computed foreground and background signals were then compared to the original musical track and the vocal overlay. Similarly was computed using cosine similarity.</p>
+
+<h3>
+<a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion</h3>
+
+<p>In conclusion, we saw that genre had no affect on performance because NMF was superior. We saw performance improve when separating classical music and saw performance depend heavily on if the signal was background or foreground.</p>
+
+<p>Next steps would be to test these results against a larger sample of data. Moreover, we could try testing different algorithms and genres. With that larger test, we could further develop our application to take take advantage of the differing performances of algorithms. </p>
 
 <h3>
 <a id="team" class="anchor" href="#team" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Team</h3>
