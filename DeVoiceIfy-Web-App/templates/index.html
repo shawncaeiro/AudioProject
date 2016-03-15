@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<h1 class="text-center">Welcome To DeVoiceIfy!</h1>
+<p class="text-center">EECS 352 - Shawn Caeiro, Sam Cohen, Zavier Henry</p>
+<h3 class="text-center">We will help you test out source separation of spoken voice from music. Start by uploading a song.</h3>
+  <form action="" method=post enctype=multipart/form-data style="width:50%; margin-left:25%;">
+    <label for="iny">Upload Wav File:</label><br>
+
+<div class="input-group">
+  <span class="input-group-btn" id="iny">
+                  <span class="btn btn-primary btn-file">
+                      Browse&hellip; <input type="file" name="file" accept=".wav">
+                  </span>
+  </span>
+  <input type="text" class="form-control" readonly>
+
+      </div>
+      <div class="form-group">
+        <label for="sel1">Select Genre:</label>
+        <select class="form-control" id="sel1">
+          <option>Rock</option>
+          <option>Classical</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="sel2">Which would you prefer sound better after separation?</label>
+        <select class="form-control" id="sel2">
+          <option>Voice</option>
+          <option>Music</option>
+        </select>
+      </div>
+      <div class="text-center">
+              <input class="btn btn-default" type=submit value=Upload!>
+        </div>
+    </form>
+
+{% endblock %}
+{% block js %}
+  <script src="{{url_for('static', filename='js/upload.js')}}"></script>
+{% endblock %}

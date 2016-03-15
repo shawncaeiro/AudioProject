@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<h2 class="text-center">Now its time to talk over the song. Click Start Recording below to
+    start recording. You will be stopped after {{context.length}} seconds.</h2>
+<div class="text-center">
+  <audio id="audioboy" controls autoplay style="display:none;"></audio>
+  <br>
+  <script type="text/javascript" src="{{url_for('static', filename='js/recorder.js')}}">
+  </script>
+  <span id="upurl" style="display:none;">{{context.uploadurl}}</span>
+  <span id="lengthms" style="display:none;">{{context.lengthms}}</span>
+  <input id="startbtn" class="btn btn-default" onclick="startRecording();" type="button" value="Start Recording" /><br>
+  <input id="stopbtn" onclick="stopRecording({{context.lengthms}})" type="button" value="Stop" class="btn btn-default" />
+  <br>
+  <button id="submitbtn" onclick="submitBlobby()" class="btn btn-default" style="display:none;">Submit Voice!</button>
+  <!-- <form action="" method=post enctype=multipart/form-data>
+    <input type="file" id="hidden" name="file" style="display:none;" />
+  </form> -->
+  <!-- <button class="btn btn-default" id="upfile" style="display:none;" onclick="uploadtalking()">Upload Talking!</button> -->
+</div>
+{% endblock %}
+{% block js %}
+  <script>
+    var onFail = function(e) {
+      console.log('Rejected!', e);
+    };
+
+    var onSuccess = function(s) {
+      var context = new webkitAudioContext();
+      var mediaStreamSource = context.createMediaStreamSource(s);
+      recorder = new Recorder(mediaStreamSource);
+      recorder.record();
+
+      // audio loopback
+      // mediaStreamSource.connect(context.destination);
+    }
+
+    window.URL = window.URL || window.webkitURL;
+    navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+    var recorder;
+    var audio = document.querySelector('audio');
+    var uploadurl = document.getElementById('upurl').innerHTML;
+    var startbtn = document.getElementById('startbtn');
+    var stopbtn = document.getElementById('stopbtn');
+    var lengthms = document.getElementById('lengthms').innerHTML;
+    blobby = new Blob();
+
+    function startRecording() {
+      if (navigator.getUserMedia) {
+        stoptimeout = setTimeout(stopRecording, lengthms);
+        stopbtn.style.display='inline';
+        navigator.getUserMedia({audio: true}, onSuccess, onFail);
+      } else {
+        console.log('navigator.getUserMedia not present');
+      }
+    }
+
+    function submitBlobby() {
+      // var hidden_elem = document.getElementById("hidden");
+      // uploadAudioFromBlob(s);
+      var fd = new FormData();
+      // fd.append('fname', 'test.wav');
+      fd.append('file', blobby, 'newfile.wav');
+      $.ajax({
+          type: 'POST',
+          url: uploadurl,
+          data: fd,
+          processData: false,
+          contentType: false
+      }).done(function(data) {
+             window.location.href=data;
+      });
+    }
+
+    function stopRecording() {
+      clearTimeout(stoptimeout);
+      audio.style.display='inline';
+      // startbtn.style.display='none';
+      stopbtn.style.display='none';
+      submitbtn.style.display='inline';
+      // upfile.style.display='block';
+      recorder.stop();
+      recorder.exportWAV(function(s) {
+        blobby = s;
+        audio.src = window.URL.createObjectURL(s);
+        // hidden_elem.value = window.URL.createObjectURL(s);
+      });
+    }
+  </script>
+
+{% endblock %}

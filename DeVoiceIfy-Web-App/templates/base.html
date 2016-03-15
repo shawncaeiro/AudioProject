@@ -1,0 +1,18 @@
+<!doctype html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/custom.css')}}">
+  <title>{% block title %}{% endblock %} - DeVoiceIfy</title>
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="navbar-header">
+      <a class="navbar-brand" href="/">DeVoiceIfy</a>
+    </div>
+</nav>
+  <div id="content">{% block content %}{% endblock %}</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+{% block js %}{% endblock %}

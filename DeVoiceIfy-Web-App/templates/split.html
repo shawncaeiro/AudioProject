@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<h3 class="text-center">Download Your Separated Sources Below:</h3>
+<div class="text-center">
+<a href="{{url_for('uploaded_file', filename=context.split1name)}}" download>foreground.wav</a><br>
+  <a href="{{url_for('uploaded_file', filename=context.split2name)}}" download>background.wav</a>
+</div>
+{% endblock %}
