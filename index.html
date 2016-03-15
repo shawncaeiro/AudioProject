@@ -79,6 +79,17 @@ To quantify the analysis, we created an automated system that took in clips of a
 Through a web application, a person is able to separate audio based on a musical piece’s genre.  A user enters a audio snippet through a browser interface, along with the genre of that music. The user is then allowed to overlay a vocal audio track through the microphone. The system then processes the mixed audio signal using the source separation algorithm best suited for that genre. The separated audio is then available to the user.</p>
 
 <h3>
+<a id="dataset-and-methodology" class="anchor" href="#dataset-and-methodology" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dataset and Methodology</h3>
+
+<p>Our dataset set came from manually creating audio snippets from YouTube clips of musical performances, with no vocals. For testing, we overlayed a vocal track on those audio snippets. </p>
+
+<p>For our testing we chose the genres of classical and rock. We believed each genre had distinct rhythm and flow. We hypothesized that because of this different, some algorithms would prove to work better than others.</p>
+
+<p>We compared REpeating Pattern Extraction Technique (REPET), Nonnegative Matrix Decomposition (NMF), and TruncatedSVD (SVD). We chose these algorithms based on literature in the field and feasibility of implementation. </p>
+
+<p>Our methodology consisted of running each mixed signal against each source separation algorithm. The computed foreground and background signals were then compared to the original musical track and the vocal overlay. Similarly was computed using cosine similarity.</p>
+
+<h3>
 <a id="results" class="anchor" href="#results" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results</h3>
 
 <p><img src="http://i.imgur.com/6BgV3ko.png" alt="Source Separation Results"></p>
@@ -89,17 +100,6 @@ Through a web application, a person is able to separate audio based on a musical
 <p>Our analysis showed it was easier to separate classical music than rock. An interesting note was that it was easier to separate out the rock background than classical. This could be due to the repetitive nature of the background signal. </p>
 
 <p>Our data said NMF performed best regardless of the genre. However, when looking at background and foreground individually, we see REPET worked well on background signals and poor on vocal. SVD had reverse performance. This indicates that an algorithm should be selected based on which signal is most important to retain.</p>
-
-<h3>
-<a id="dataset-and-methodology" class="anchor" href="#dataset-and-methodology" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dataset and Methodology</h3>
-
-<p>Our dataset set came from manually creating audio snippets from YouTube clips of musical performances, with no vocals. For testing, we overlayed a vocal track on those audio snippets. </p>
-
-<p>For our testing we chose the genres of classical and rock. We believed each genre had distinct rhythm and flow. We hypothesized that because of this different, some algorithms would prove to work better than others.</p>
-
-<p>We compared REpeating Pattern Extraction Technique (REPET), Nonnegative Matrix Decomposition (NMF), and TruncatedSVD (SVD). We chose these algorithms based on literature in the field and feasibility of implementation. </p>
-
-<p>Our methodology consisted of running each mixed signal against each source separation algorithm. The computed foreground and background signals were then compared to the original musical track and the vocal overlay. Similarly was computed using cosine similarity.</p>
 
 <h3>
 <a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion</h3>
